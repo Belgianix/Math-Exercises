@@ -85,7 +85,7 @@ class operations():
         a,b = randint(0,10), randint(1,10)
         product = a*b
         while True:
-            user_input = input(f"{product} / {b} = ")
+            user_input = input(f"{product} / {b} = ") # Utilizing Bo's method to prevent decimals
             if operation_checks.check_for_stop(user_input):
                 return True
             elif not(operation_checks.viability_check(user_input)):
