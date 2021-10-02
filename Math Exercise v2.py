@@ -9,6 +9,7 @@
 #// TODO: Add comments
 
 from random import randint, choice
+import tkinter as tk
 
 # Using a class to organize methods used for checking the validity of inputs
 class operation_checks(): 
