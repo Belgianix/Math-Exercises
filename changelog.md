@@ -22,3 +22,4 @@ The format is based on [Keep a Changelog],
 
 <!-- Versions -->
 [1.0.0]: https://github.com/Belgianix/Math-Exercises
+[1.0.1]: https://github.com/Belgianix/Math-Exercises/releases/tag/v1.0.1
