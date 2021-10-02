@@ -9,10 +9,24 @@ The format is based on [Keep a Changelog],
 - Login option through MariaDB 
 - Sound effects
 
+## [2.0.0] - 2021-10-02
+
+### Added
+- 
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+
 ## [1.0.1] - 2021-10-01
 
 ### Changed
-- prevention of decimal numbers in the division method. Better optimized
+- Prevention of decimal numbers in the division method. Better optimized
 
 ## [1.0.0] - 2021-9-30
 - initial release

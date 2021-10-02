@@ -1,14 +1,15 @@
 # Title: Math Exercises
-# Version: 1.0.1
-# Author: Seighin Van Hoeserlande
+# Version: 2.0.0
+# Author: Seighin Van Hoeserlande & Bo Van Achte
 # Description: Simple program created to test basic mathmatical skills of the user. Created as a project for school on 09-30-2021
 
-#// TODO: Make game loop
 #TODO: Add GUI (v2.0.0)
 #TODO: Optimize?
-#// TODO: Add comments
+#TODO: Bo -> Fixing while loops, add hide/show functions
+#TODO: Seighin -> Create menu GUI
 
-from random import randint, choice
+from random import randint
+import tkinter as tk
 
 # Using a class to organize methods used for checking the validity of inputs
 class operation_checks(): 
@@ -140,3 +141,4 @@ def main():
 
 if __name__ == '__main__': # Only runs the script if it is run directly and not imported as an external file
     main()
+
