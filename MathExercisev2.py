@@ -6,10 +6,48 @@
 #TODO: Add GUI (v2.0.0)
 #TODO: Optimize?
 #TODO: Bo -> Fixing while loops, add hide/show functions
-#TODO: Seighin -> Create menu GUI
+#TODO: Seighin -> Create menu GUI, stylize main menu: how?
+#TODO: Come up with a name?
 
 from random import randint
 import tkinter as tk
+import tkinter.font as tkFont
+
+global_padding = (10, 10)
+
+root = tk.Tk()
+root.title("Wiskunde Oefeningen v2.0.0")
+root.rowconfigure(0, weight=1, minsize=175)
+root.rowconfigure(1, minsize=500, weight=1)
+root.rowconfigure(2, minsize=100, weight=1)
+root.columnconfigure(0, weight=1, minsize=500)
+root.resizable(width=False, height=False)
+
+title_font = tkFont.Font(family="Arial", size=36, weight="bold", underline=True, slant="italic")
+
+frm_menu = tk.Frame(root)
+frm_menu.grid(row=1, column=0, sticky="nesw", pady=global_padding[1])
+frm_menu.rowconfigure([0,1,2], minsize=150, weight=1)
+frm_menu.columnconfigure([0,1,2,3,4,5], minsize=100, weight=1)
+
+lbl_title = tk.Label(root, text="Wiskunde Oefeningen", bg="#0E86D4", font=title_font, fg="white")
+lbl_title.grid(row=0, column=0, sticky="nesw", pady=(0, global_padding[1]*2))
+
+btn_addition = tk.Button(frm_menu, text="Optellen")
+btn_addition.grid(row=0, column=1, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+btn_subtraction = tk.Button(frm_menu, text="Aftrekken")
+btn_subtraction.grid(row=0, column=3, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+
+btn_multiplication = tk.Button(frm_menu, text="Vermenigvuldigen")
+btn_multiplication.grid(row=1, column=1, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+btn_division = tk.Button(frm_menu, text="Delen")
+btn_division.grid(row=1, column=3, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+
+btn_mixed_problems = tk.Button(frm_menu, text="Gemengde Problemen")
+btn_mixed_problems.grid(row=2, column=1, columnspan=4, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+
+lbl_copyright = tk.Label(root, text="\u00A9 2021 Seighin Van Hoeserlande & Bo Van Achte", bg="#202020", fg="white")
+lbl_copyright.grid(row=2, column=0, sticky="nesw", pady=(global_padding[1]*2, 0))
 
 # Using a class to organize methods used for checking the validity of inputs
 class operation_checks(): 
@@ -117,6 +155,7 @@ def game_loop(user_input):
 # Function called upon runtime as a script
 def main():
     while True:
+        root.mainloop()
         selection = int(input("""
 ---------------------------
 1.) Optellen
