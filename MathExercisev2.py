@@ -13,6 +13,7 @@ from random import randint
 import tkinter as tk
 import tkinter.font as tkFont
 
+
 global_padding = (10, 10)
 
 root = tk.Tk()
@@ -25,7 +26,7 @@ root.resizable(width=False, height=False)
 
 
 title_font = tkFont.Font(family="Arial", size=36, weight="bold", underline=True, slant="italic")
-
+#Frame for the menu
 frm_menu = tk.Frame(root) #frm == frame
 frm_menu.grid(row=1, column=0, sticky="nesw", pady=global_padding[1])
 frm_menu.rowconfigure([0,1,2], minsize=150, weight=1)
@@ -57,6 +58,15 @@ btn_mixed_problems.grid(row=2, column=1, columnspan=4, sticky="nesw", padx= glob
 lbl_copyright = tk.Label(root, text="\u00A9 2021 Seighin Van Hoeserlande & Bo Van Achte", bg="#202020", fg="white")
 lbl_copyright.grid(row=2, column=0, sticky="nesw", pady=(global_padding[1]*2, 0))
 
+#Other frame
+#frm_calculation = tk.Frame(root)
+#frm_calculation.grid(row= 1, column=1, sticky="nesw", pady=global_padding[1])
+#frm_menu.rowconfigure([0,1,2,3,4], minsize=150, weight=1)
+#frm_menu.columnconfigure([0,1], minsize=100, weight=1)
+
+#btn end calculations
+#btn_end_calculations = tk.Button(frm_calculation, text="Terug naar menu")
+#btn_end_calculations.grid(row=0, column=1, sticky="nesw", padx= global_padding[1], pady=global_padding[1])
 
 # Using a class to organize methods used for checking the validity of inputs
 class operation_checks(): 
@@ -156,29 +166,28 @@ def game_loop(user_input):
 
 # Function called upon runtime as a script
 def main():
-    while True:
-        root.mainloop()  
-        selection = int(input("""
----------------------------
-1.) Optellen
-2.) Aftrekken
-3.) Vermenigvuldigen
-4.) Delen
-5.) Gemengd
-6.) Afsluiten
----------------------------
-\nGeef het getal in dat overeenkomt met de keuze dat je wilt: """))
+    root.mainloop()  
+    selection = int(input("""
+#---------------------------
+#1.) Optellen
+#2.) Aftrekken
+#3.) Vermenigvuldigen
+#4.) Delen
+#5.) Gemengd
+#6.) Afsluiten
+#---------------------------
+#\nGeef het getal in dat overeenkomt met de keuze dat je wilt: """))
 
-        # Error handling for main menu
-        try:
-            if selection < 1 or selection > 6:
-                print("\nEnkel waardes tussen 1-6 worden geaccepteerd.")
-            elif selection == 6:
-                quit()
-            else:
-                game_loop(selection)
-        except ValueError:
+    # Error handling for main menu
+    try:
+        if selection < 1 or selection > 6:
             print("\nEnkel waardes tussen 1-6 worden geaccepteerd.")
+        elif selection == 6:
+            quit()
+        else:
+            game_loop(selection)
+    except ValueError:
+        print("\nEnkel waardes tussen 1-6 worden geaccepteerd.")
 
 if __name__ == '__main__': # Only runs the script if it is run directly and not imported as an external file
     main()
