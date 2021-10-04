@@ -12,13 +12,14 @@ The format is based on [Keep a Changelog],
 ## [2.0.0] - 2021-10-02
 
 ### Added
-- 
+- Comments to the Gui and other small memo's in code 
 
 ### Changed
 
 ### Deprecated
-
+- method check_for_stop and all corresponding code (changed to comment )
 ### Removed
+- while loops 
 
 ### Fixed
 
