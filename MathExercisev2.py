@@ -59,14 +59,36 @@ lbl_copyright = tk.Label(root, text="\u00A9 2021 Seighin Van Hoeserlande & Bo Va
 lbl_copyright.grid(row=2, column=0, sticky="nesw", pady=(global_padding[1]*2, 0))
 
 #Other frame
-#frm_calculation = tk.Frame(root)
-#frm_calculation.grid(row= 1, column=1, sticky="nesw", pady=global_padding[1])
-#frm_menu.rowconfigure([0,1,2,3,4], minsize=150, weight=1)
-#frm_menu.columnconfigure([0,1], minsize=100, weight=1)
+frm_calculation = tk.Frame(root)
+frm_calculation.grid(row=1, column=0, sticky="nesw", pady=global_padding[1])
+frm_calculation.rowconfigure([0,1,2,3,4], minsize=100, weight=1)
+frm_calculation.columnconfigure([0,1,2,3], minsize=100, weight=1)
 
 #btn end calculations
-#btn_end_calculations = tk.Button(frm_calculation, text="Terug naar menu")
-#btn_end_calculations.grid(row=0, column=1, sticky="nesw", padx= global_padding[1], pady=global_padding[1])
+btn_end_calculations = tk.Button(frm_calculation, text="Terug naar menu")
+btn_end_calculations.grid(row=0, column=3, sticky="nesw", padx= global_padding[1], pady=global_padding[1])
+
+#lbl count_right and lbl count_wrong
+lbl_count_right = tk.Label(frm_calculation, text="Juist: ", fg="dark green")
+lbl_count_right.grid(row=1, column=0, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+
+lbl_count_wrong = tk.Label(frm_calculation, text="Fout: ", fg="dark red")
+lbl_count_wrong.grid(row=1, column=1, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+
+#lbl specified_exercise and txt answer_sp
+lbl_specified_exercise =tk.Label(frm_calculation, text="Exercise: ")
+lbl_specified_exercise.grid(row=2, column=0, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+
+txt_answer_sp = tk.Entry(frm_calculation)
+txt_answer_sp.grid(row=2, column=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+
+#btn Check_Answer
+btn_check_answer = tk.Button(frm_calculation, text="Controleer het antwoord")
+btn_check_answer.grid(row=3, column=0, columnspan=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+
+#lbl wrong_answer
+lbl_wrong_answer = tk.Label(frm_calculation, text="Verkeerd antwoord")
+lbl_wrong_answer.grid(row=4, column=0, columnspan=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Using a class to organize methods used for checking the validity of inputs
 class operation_checks(): 
@@ -85,7 +107,7 @@ class operation_checks():
             if int(user_input): # Ignored if the input is a valid integer. Otherwise throws ValueError
                 pass
         except ValueError:
-            print("\nEnkel nummers of \"stop\" zijn toegestaan\n") #TODO: Change to messagebox???
+            print("\nEnkel nummers of \"stop\" zijn toegestaan\n") #TODO: Change to error text01
             return False
         return True
 

@@ -14,7 +14,7 @@ The format is based on [Keep a Changelog],
 ### Added
 - Comments to the Gui and other small memo's in code 
 - Tried making a frame in Gui --> didn't work well so i put it in comment
-
+- Gui frame for specified exercise + widgets and their locations on the frame --> lay out may need a change
 ### Changed
 
 ### Deprecated
