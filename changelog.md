@@ -13,22 +13,34 @@ The format is based on [Keep a Changelog],
 
 ### Added
 - Comments to the Gui and other small memo's in code 
-- Tried making a frame in Gui --> didn't work well so i put it in comment
-- Gui frame for specified exercise + widgets and their locations on the frame --> lay out may need a change
+- Gui frame for specified exercise + widgets and their locations on the frame --> lay out may need a change --> probably a good idea
+- Counters displaying the amount of correct and wrong answers
+- Back button that returns to the main menu
+- Display of correct answer when the user inputs the wrong answer
+- Prevention of input besides integers
+- Handlers class
+- return_to_main_menu and check_button_handler methods
+- frm_menu to switch between pages easier
+
 ### Changed
+- Positioning of code blocks
 
 ### Deprecated
-- method check_for_stop and all corresponding code (changed to comment )
-### Removed
-- while loops 
+- check_for_stop method
+- viability_check method
+- viability class
 
-### Fixed
+### Removed
+- While loops inside operations methods
+- While loop inside game loop function
+- Output to console for user
 
 
 ## [1.0.1] - 2021-10-01
 
 ### Changed
 - Prevention of decimal numbers in the division method. Better optimized
+
 
 ## [1.0.0] - 2021-9-30
 - initial release
