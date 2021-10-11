@@ -6,21 +6,15 @@
 #TODO: Add GUI (v2.0.0)
 #TODO: Optimize?
 
-#TODO: Come up with a name? <-- For what? <-- The program. Just calling it "Wiskunde Oefeningen" doesn't really sound nice
+#TODO: Come up with a name? <-- For what? <-- The program. Just calling it "Wiskunde Oefeningen" doesn't really sound nice <-- I personally don't think there is anything wrong with that name 
 #TODO: Stylize calculation frame
-#TODO: Add footer to calculation screen and possibly a header displaying the current type of exercise?
-#TODO: Check the answer if the enter key is pressed
+#TODO: Fix the header of mixed exercises
 
 from random import randint
 import tkinter as tk
 import tkinter.font as tkFont
 
 global_padding = (10, 10)
-
-#def check_for_stop(user_input):
-#    if user_input.lower() == "stop":
-#        return True
-#TODO: change to btn x -> replaced with return_to_main_menu function (Remove when read plz)
 
 # Using a class to organize methods that provide the math problems
 class operations():
@@ -29,6 +23,7 @@ class operations():
     def addition():
         a,b = randint(0,9), randint(0,9)
         lbl_specified_exercise.configure(text=f"{a} + {b} = ")
+        lbl_title_calculation.configure(text="Optellen")#I think there should be a more efficient way to do this but for now I just did it this way cause it's easy
         return a+b
 
     @staticmethod
@@ -37,22 +32,26 @@ class operations():
         while a<b:
             a,b = randint(0,9), randint(0,9)
         lbl_specified_exercise.configure(text=f"{a} - {b} = ")
+        lbl_title_calculation.configure(text="Aftrekken")
         return a-b
     
     @staticmethod
     def multiplication():
         a,b = randint(0,9), randint(0,9)
         lbl_specified_exercise.configure(text=f"{a} x {b} = ")
+        lbl_title_calculation.configure(text="Vermenigvuldigen")
         return a*b
 
     @staticmethod
     def division():
         a,b = randint(0,10), randint(1,10)
-        lbl_specified_exercise.configure(text=f"{a*b} ÷ {b} = ") # Utilizing Bo's method to prevent decimals
+        lbl_specified_exercise.configure(text=f"{a*b} ÷ {b} = ")
+        lbl_title_calculation.configure(text="Delen")
         return (a*b)/b
 
     @staticmethod
     def mixed_problems():
+        lbl_title_calculation.configure(text="Gemengde oefeningen")#This one doesn't work
         input_option_dict = {1 : operations.addition, 2: operations.subtraction, 3: operations.multiplication, 4: operations.division, 5: operations.mixed_problems}
         return input_option_dict[randint(1,5)]()
 
@@ -85,13 +84,14 @@ class handlers:
             ent_answer_space.delete(0, "end") # Clears entry box
             game_loop(current_operation)
         except ValueError: # Warns user that only numbers are permitted
-            ent_answer_space.insert(0, "Enkel nummers zijn toegestaan") #* Is there a better way to warn the user?
+            ent_answer_space.insert(0, "Alleen nummers!") #* Is there a better way to warn the user?<-- nope, I think this is the best way <-- I made the message a little shorter so it fits in the entrybox
 
     # Called when the "end_calculations" button is pressed
     @staticmethod
     def return_to_main_menu():
         """Returns to main menu and resets the calculation screen"""
-        frm_calculation.lower() # Hides calculation screen
+        # Hides calculation screen
+        frm_calculation.lower()
         # Resets calculation screen
         lbl_wrong_answer.configure(text="")
         counters.reset()
@@ -165,36 +165,44 @@ lbl_copyright.grid(row=2, column=0, sticky="nesw", pady=(global_padding[1]*2, 0)
 
 # Creating calculation frame
 frm_calculation = tk.Frame(root)
-frm_calculation.rowconfigure([0,1,2,3,4], minsize=100, weight=1)
+frm_calculation.rowconfigure([0,1,2,3,4,5,6], minsize=100, weight=1)
 frm_calculation.columnconfigure([0,1,2,3], minsize=100, weight=1)
 frm_calculation.grid(row=1, column=1, sticky="nesw")
 frm_calculation.lower() # Hides frame initially
 
+# Creating header
+lbl_title_calculation = tk.Label(frm_calculation, text="Wiskunde Oefeningen", bg="#0E86D4", font=title_font, fg="white") 
+lbl_title_calculation.grid(row=0, column=0, columnspan=4, sticky="nesw", pady=(0, global_padding[1]*2))
+
 # Creating end_calculations button
-btn_end_calculations = tk.Button(frm_calculation, text="Terug naar menu", command=handlers.return_to_main_menu)
-btn_end_calculations.grid(row=0, column=3, sticky="nesw", padx= global_padding[1], pady=global_padding[1])
+btn_end_calculations = tk.Button(frm_calculation, text="Menu", command=handlers.return_to_main_menu)
+btn_end_calculations.grid(row=1, column=3, sticky="nesw", padx= global_padding[1], pady=global_padding[1])
 
 # Creating count_right and count_wrong labels
 lbl_count_right = tk.Label(frm_calculation, text="Juist: 0", fg="dark green")
-lbl_count_right.grid(row=1, column=0, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+lbl_count_right.grid(row=2, column=0, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 lbl_count_wrong = tk.Label(frm_calculation, text="Fout: 0", fg="dark red")
-lbl_count_wrong.grid(row=1, column=1, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+lbl_count_wrong.grid(row=2, column=1, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating specified_exercise label and ent_answer_space entry box
 lbl_specified_exercise =tk.Label(frm_calculation)
-lbl_specified_exercise.grid(row=2, column=0, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+lbl_specified_exercise.grid(row=3, column=0, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 ent_answer_space = tk.Entry(frm_calculation)
-ent_answer_space.grid(row=2, column=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+ent_answer_space.grid(row=3, column=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating check_answer button
 btn_check_answer = tk.Button(frm_calculation, text="Controleer het antwoord", command=handlers.check_button_handler)
-btn_check_answer.grid(row=3, column=0, columnspan=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+btn_check_answer.grid(row=4, column=0, columnspan=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating wrong_answer label
 lbl_wrong_answer = tk.Label(frm_calculation, fg="red")
-lbl_wrong_answer.grid(row=4, column=0, columnspan=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+lbl_wrong_answer.grid(row=5, column=0, columnspan=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+
+# Creating footer
+lbl_copyright = tk.Label(frm_calculation, text="\u00A9 2021 Seighin Van Hoeserlande & Bo Van Achte", bg="#202020", fg="white")
+lbl_copyright.grid(row=6, column=0, columnspan=4, sticky="nesw", pady=(global_padding[1]*2, 0))
 
 # Function called upon runtime as a script
 def main():

@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog],
 
 ### Added
 - Comments to the Gui and other small memo's in code 
-- Gui frame for specified exercise + widgets and their locations on the frame --> lay out may need a change --> probably a good idea
+- Gui frame for specified exercise + widgets and their locations on the frame --> lay out may need a change --> probably a good idea <-- any suggestions????
 - Counters displaying the amount of correct and wrong answers
 - Back button that returns to the main menu
 - Display of correct answer when the user inputs the wrong answer
