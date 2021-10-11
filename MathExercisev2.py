@@ -15,7 +15,6 @@ from random import randint
 import tkinter as tk
 import tkinter.font as tkFont
 
-amount_wrong, amount_correct = 0, 0
 global_padding = (10, 10)
 
 #def check_for_stop(user_input):
@@ -60,6 +59,7 @@ class operations():
 
 # Defines needed variables and calls the corresponding functions
 def game_loop(operation):
+    """Defines needed variables and calls the corresponding functions."""
     global correct_answer
     global current_operation
     frm_calculation.lift() # Makes the exercise visible
@@ -72,17 +72,15 @@ class handlers:
     # Called when the "check_answer" button is pressed
     @staticmethod
     def check_button_handler():
-        global amount_correct
-        global amount_wrong
         try:
             user_input = int(ent_answer_space.get()) # Checks if the inputted answer is an integer
             lbl_wrong_answer.configure(text="")
             if correct_answer == user_input: # Checks if the answer is correct or not and updates the counters accordingly
-                amount_correct += 1
-                lbl_count_right.configure(text=f"Juist: {amount_correct}")
+                counters.increase_correct_count()
+                lbl_count_right.configure(text=f"Juist: {counters.amount_correct}")
             else:
-                amount_wrong += 1
-                lbl_count_wrong.configure(text=f"Fout: {amount_wrong}")
+                counters.increase_wrong_count()
+                lbl_count_wrong.configure(text=f"Fout: {counters.amount_wrong}")
                 lbl_wrong_answer.configure(text=f"Het juiste antwoord was {int(correct_answer)}")
             ent_answer_space.delete(0, "end") # Clears entry box
             game_loop(current_operation)
@@ -92,14 +90,27 @@ class handlers:
     # Called when the "end_calculations" button is pressed
     @staticmethod
     def return_to_main_menu():
-        global amount_correct
-        global amount_wrong
+        """Returns to main menu and resets the calculation screen"""
         frm_calculation.lower() # Hides calculation screen
         # Resets calculation screen
         lbl_wrong_answer.configure(text="")
-        amount_correct, amount_wrong = 0, 0
-        lbl_count_right.configure(text=f"Juist: {amount_correct}")
-        lbl_count_wrong.configure(text=f"Fout: {amount_wrong}")
+        counters.reset()
+        lbl_count_right.configure(text=f"Juist: {counters.amount_correct}")
+        lbl_count_wrong.configure(text=f"Fout: {counters.amount_wrong}")
+
+# A simple class to eliminate the need of global variables and group similar methods related to the counters
+class counters:
+
+    amount_wrong, amount_correct = 0, 0
+
+    def reset():
+        counters.amount_wrong, counters.amount_correct = 0, 0
+    
+    def increase_correct_count():
+        counters.amount_correct +=1
+    
+    def increase_wrong_count():
+        counters.amount_wrong +=1
 
 # Defining the root window
 root = tk.Tk()

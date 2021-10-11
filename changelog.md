@@ -21,9 +21,12 @@ The format is based on [Keep a Changelog],
 - Handlers class
 - return_to_main_menu and check_button_handler methods
 - frm_menu to switch between pages easier
+- limited docstrings
+- counters class
 
 ### Changed
 - Positioning of code blocks
+- global amount_wrong, amount_correct variables to class variables
 
 ### Deprecated
 - check_for_stop method
