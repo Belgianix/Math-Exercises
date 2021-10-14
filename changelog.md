@@ -27,6 +27,7 @@ The format is based on [Keep a Changelog],
 ### Changed
 - Positioning of code blocks
 - global amount_wrong, amount_correct variables to class variables
+L- Lay-out Calculation
 
 ### Deprecated
 - check_for_stop method

@@ -166,43 +166,43 @@ lbl_copyright.grid(row=2, column=0, sticky="nesw", pady=(global_padding[1]*2, 0)
 # Creating calculation frame
 frm_calculation = tk.Frame(root)
 frm_calculation.rowconfigure([0,1,2,3,4,5,6], minsize=100, weight=1)
-frm_calculation.columnconfigure([0,1,2,3], minsize=100, weight=1)
+frm_calculation.columnconfigure([0,1,2,3,4], minsize=100, weight=1)
 frm_calculation.grid(row=1, column=1, sticky="nesw")
 frm_calculation.lower() # Hides frame initially
 
 # Creating header
 lbl_title_calculation = tk.Label(frm_calculation, text="Wiskunde Oefeningen", bg="#0E86D4", font=title_font, fg="white") 
-lbl_title_calculation.grid(row=0, column=0, columnspan=4, sticky="nesw", pady=(0, global_padding[1]*2))
+lbl_title_calculation.grid(row=0, column=0, columnspan=5, sticky="nesw", pady=(0, global_padding[1]*2))
 
 # Creating end_calculations button
 btn_end_calculations = tk.Button(frm_calculation, text="Menu", command=handlers.return_to_main_menu)
-btn_end_calculations.grid(row=1, column=3, sticky="nesw", padx= global_padding[1], pady=global_padding[1])
+btn_end_calculations.grid(row=1, column=4, sticky="nesw", padx= global_padding[1], pady=global_padding[1])
 
 # Creating count_right and count_wrong labels
-lbl_count_right = tk.Label(frm_calculation, text="Juist: 0", fg="dark green")
-lbl_count_right.grid(row=2, column=0, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+lbl_count_right = tk.Label(frm_calculation, text="Juist: 0", fg="dark green", bg="DarkOliveGreen1", borderwidth=1, relief="sunken")
+lbl_count_right.grid(row=1, column=0,columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
-lbl_count_wrong = tk.Label(frm_calculation, text="Fout: 0", fg="dark red")
-lbl_count_wrong.grid(row=2, column=1, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+lbl_count_wrong = tk.Label(frm_calculation, text="Fout: 0", fg="dark red", bg="Indianred1", borderwidth=1, relief="sunken")
+lbl_count_wrong.grid(row=1, column=2,columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating specified_exercise label and ent_answer_space entry box
-lbl_specified_exercise =tk.Label(frm_calculation)
-lbl_specified_exercise.grid(row=3, column=0, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+lbl_specified_exercise =tk.Label(frm_calculation, font=("Arial",30))
+lbl_specified_exercise.grid(row=2, rowspan=2, column=0, columnspan=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
-ent_answer_space = tk.Entry(frm_calculation)
-ent_answer_space.grid(row=3, column=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+ent_answer_space = tk.Entry(frm_calculation, font=("Arial", 25), width=10)
+ent_answer_space.grid(row=2, rowspan=2 ,column=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating check_answer button
 btn_check_answer = tk.Button(frm_calculation, text="Controleer het antwoord", command=handlers.check_button_handler)
-btn_check_answer.grid(row=4, column=0, columnspan=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+btn_check_answer.grid(row=4, column=0, columnspan=4, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating wrong_answer label
-lbl_wrong_answer = tk.Label(frm_calculation, fg="red")
-lbl_wrong_answer.grid(row=5, column=0, columnspan=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+lbl_wrong_answer = tk.Label(frm_calculation, fg="red", font=("Arial", 15))
+lbl_wrong_answer.grid(row=5, column=0, columnspan=4, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating footer
 lbl_copyright = tk.Label(frm_calculation, text="\u00A9 2021 Seighin Van Hoeserlande & Bo Van Achte", bg="#202020", fg="white")
-lbl_copyright.grid(row=6, column=0, columnspan=4, sticky="nesw", pady=(global_padding[1]*2, 0))
+lbl_copyright.grid(row=6, column=0, columnspan=5, sticky="nesw", pady=(global_padding[1]*2, 0))
 
 # Function called upon runtime as a script
 def main():
