@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog],
 
 ### Added
 - Comments to the Gui and other small memo's in code 
-- Gui frame for specified exercise + widgets and their locations on the frame --> lay out may need a change --> probably a good idea <-- any suggestions????
+- Gui frame for specified exercise + widgets and their locations on the frame
 - Counters displaying the amount of correct and wrong answers
 - Back button that returns to the main menu
 - Display of correct answer when the user inputs the wrong answer
@@ -23,11 +23,12 @@ The format is based on [Keep a Changelog],
 - frm_menu to switch between pages easier
 - limited docstrings
 - counters class
+- ability to press the enter key to input answer
 
 ### Changed
 - Positioning of code blocks
 - global amount_wrong, amount_correct variables to class variables
-L- Lay-out Calculation
+- Lay-out calculation screen
 
 ### Deprecated
 - check_for_stop method

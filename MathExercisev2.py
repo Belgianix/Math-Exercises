@@ -68,7 +68,7 @@ class handlers:
     
     # Called when the "check_answer" button is pressed
     @staticmethod
-    def check_button_handler():
+    def check_button_handler(event=None):
         try:
             user_input = int(ent_answer_space.get()) # Checks if the inputted answer is an integer
             lbl_wrong_answer.configure(text="")
@@ -82,19 +82,21 @@ class handlers:
             ent_answer_space.delete(0, "end") # Clears entry box
             game_loop(current_operation)
         except ValueError: # Warns user that only numbers are permitted
-            ent_answer_space.insert(0, "Alleen nummers!")
+                lbl_wrong_answer.configure(text="Alleen nummers zijn toegestaan!")
+                ent_answer_space.delete(0, "end") # Clears entry box
 
     # Called when the "end_calculations" button is pressed
     @staticmethod
     def return_to_main_menu():
         """Returns to main menu and resets the calculation screen"""
-        # Hides calculation screen
-        frm_calculation.lower()
+        frm_calculation.lower() # Hides calculation screen
         # Resets calculation screen
         lbl_wrong_answer.configure(text="")
         counters.reset()
         lbl_count_right.configure(text=f"Juist: {counters.amount_correct}")
         lbl_count_wrong.configure(text=f"Fout: {counters.amount_wrong}")
+        root.focus() # Prevents the entry box from receiving input while in the menu screen
+
 
 # A simple class to eliminate the need of global variables and group similar methods related to the counters
 class counters:
@@ -112,7 +114,7 @@ class counters:
 
 # Defining the root window
 root = tk.Tk()
-root.title("Wiskunde Oefeningen v2.0.0")
+root.title("Oefeningen Wiskunde v2.0.0")
 root.rowconfigure(1, minsize=825, weight=1)
 root.columnconfigure(1, minsize=500, weight=1)
 root.resizable(width=False, height=False)
@@ -134,7 +136,7 @@ frm_menu.rowconfigure([0,1,2], minsize=150, weight=1)
 frm_menu.columnconfigure([0,1,2,3,4,5], minsize=100, weight=1)
 
 # Creating header
-lbl_title = tk.Label(frm_home, text="Wiskunde Oefeningen", bg="#0E86D4", font=title_font, fg="white") 
+lbl_title = tk.Label(frm_home, text="Oefeningen Wiskunde", bg="#0E86D4", font=title_font, fg="white") 
 lbl_title.grid(row=0, column=0, sticky="nesw", pady=(0, global_padding[1]*2))
 
 # Creating addition button
@@ -170,8 +172,9 @@ frm_calculation.columnconfigure([0,1,2,3,4], minsize=100, weight=1)
 frm_calculation.grid(row=1, column=1, sticky="nesw")
 frm_calculation.lower() # Hides frame initially
 
+
 # Creating header
-lbl_title_calculation = tk.Label(frm_calculation, text="Wiskunde Oefeningen", bg="#0E86D4", font=title_font, fg="white") 
+lbl_title_calculation = tk.Label(frm_calculation, text="Oefeningen Wiskunde", bg="#0E86D4", font=title_font, fg="white") 
 lbl_title_calculation.grid(row=0, column=0, columnspan=5, sticky="nesw", pady=(0, global_padding[1]*2))
 
 # Creating end_calculations button
@@ -203,6 +206,8 @@ lbl_wrong_answer.grid(row=5, column=0, columnspan=4, sticky="nesw", padx= global
 # Creating footer
 lbl_copyright = tk.Label(frm_calculation, text="\u00A9 2021 Seighin Van Hoeserlande & Bo Van Achte", bg="#202020", fg="white")
 lbl_copyright.grid(row=6, column=0, columnspan=5, sticky="nesw", pady=(global_padding[1]*2, 0))
+
+ent_answer_space.bind("<Return>", handlers.check_button_handler)
 
 # Function called upon runtime as a script
 def main():
