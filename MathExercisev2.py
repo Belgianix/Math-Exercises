@@ -6,9 +6,7 @@
 #TODO: Add GUI (v2.0.0)
 #TODO: Optimize?
 
-#TODO: Come up with a name? <-- For what? <-- The program. Just calling it "Wiskunde Oefeningen" doesn't really sound nice <-- I personally don't think there is anything wrong with that name 
 #TODO: Stylize calculation frame
-#TODO: Fix the header of mixed exercises
 
 from random import randint
 import tkinter as tk
@@ -23,7 +21,6 @@ class operations():
     def addition():
         a,b = randint(0,9), randint(0,9)
         lbl_specified_exercise.configure(text=f"{a} + {b} = ")
-        lbl_title_calculation.configure(text="Optellen")#I think there should be a more efficient way to do this but for now I just did it this way cause it's easy
         return a+b
 
     @staticmethod
@@ -32,36 +29,37 @@ class operations():
         while a<b:
             a,b = randint(0,9), randint(0,9)
         lbl_specified_exercise.configure(text=f"{a} - {b} = ")
-        lbl_title_calculation.configure(text="Aftrekken")
         return a-b
     
     @staticmethod
     def multiplication():
         a,b = randint(0,9), randint(0,9)
         lbl_specified_exercise.configure(text=f"{a} x {b} = ")
-        lbl_title_calculation.configure(text="Vermenigvuldigen")
         return a*b
 
     @staticmethod
     def division():
         a,b = randint(0,10), randint(1,10)
-        lbl_specified_exercise.configure(text=f"{a*b} ÷ {b} = ")
-        lbl_title_calculation.configure(text="Delen")
+        lbl_specified_exercise.configure(text=f"{a*b} : {b} = ")
         return (a*b)/b
 
     @staticmethod
     def mixed_problems():
-        lbl_title_calculation.configure(text="Gemengde oefeningen")#This one doesn't work
         input_option_dict = {1 : operations.addition, 2: operations.subtraction, 3: operations.multiplication, 4: operations.division, 5: operations.mixed_problems}
         return input_option_dict[randint(1,5)]()
 
+# Sets the title on the calculation screen
+def title_set(name):
+    lbl_title_calculation.configure(text=name)
 
 # Defines needed variables and calls the corresponding functions
-def game_loop(operation):
+def game_loop(operation, operation_str=None):
     """Defines needed variables and calls the corresponding functions."""
     global correct_answer
     global current_operation
     frm_calculation.lift() # Makes the exercise visible
+    if operation_str != None:
+        title_set(operation_str)
     current_operation = operation
     correct_answer = operation()
 
@@ -84,7 +82,7 @@ class handlers:
             ent_answer_space.delete(0, "end") # Clears entry box
             game_loop(current_operation)
         except ValueError: # Warns user that only numbers are permitted
-            ent_answer_space.insert(0, "Alleen nummers!") #* Is there a better way to warn the user?<-- nope, I think this is the best way <-- I made the message a little shorter so it fits in the entrybox
+            ent_answer_space.insert(0, "Alleen nummers!")
 
     # Called when the "end_calculations" button is pressed
     @staticmethod
@@ -140,23 +138,23 @@ lbl_title = tk.Label(frm_home, text="Wiskunde Oefeningen", bg="#0E86D4", font=ti
 lbl_title.grid(row=0, column=0, sticky="nesw", pady=(0, global_padding[1]*2))
 
 # Creating addition button
-btn_addition = tk.Button(frm_menu, text="Optellen", command=lambda: game_loop(operations.addition))
+btn_addition = tk.Button(frm_menu, text="Optellen", command=lambda: game_loop(operations.addition, "Optellen"))
 btn_addition.grid(row=0, column=1, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating subtraction button
-btn_subtraction = tk.Button(frm_menu, text="Aftrekken", command=lambda: game_loop(operations.subtraction))
+btn_subtraction = tk.Button(frm_menu, text="Aftrekken", command=lambda: game_loop(operations.subtraction, "Aftrekken"))
 btn_subtraction.grid(row=0, column=3, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating multiplication button
-btn_multiplication = tk.Button(frm_menu, text="Vermenigvuldigen", command=lambda: game_loop(operations.multiplication))
+btn_multiplication = tk.Button(frm_menu, text="Vermenigvuldigen", command=lambda: game_loop(operations.multiplication, "Vermenigvuldigen"))
 btn_multiplication.grid(row=1, column=1, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating division button
-btn_division = tk.Button(frm_menu, text="Delen", command=lambda: game_loop(operations.division))
+btn_division = tk.Button(frm_menu, text="Delen", command=lambda: game_loop(operations.division, "Delen"))
 btn_division.grid(row=1, column=3, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating mixed_problems button
-btn_mixed_problems = tk.Button(frm_menu, text="Gemengde Problemen", command=lambda: game_loop(operations.mixed_problems))
+btn_mixed_problems = tk.Button(frm_menu, text="Gemengde Problemen", command=lambda: game_loop(operations.mixed_problems, "Gemengde Oefeningen"))
 btn_mixed_problems.grid(row=2, column=1, columnspan=4, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating footer
@@ -165,7 +163,9 @@ lbl_copyright.grid(row=2, column=0, sticky="nesw", pady=(global_padding[1]*2, 0)
 
 # Creating calculation frame
 frm_calculation = tk.Frame(root)
-frm_calculation.rowconfigure([0,1,2,3,4,5,6], minsize=100, weight=1)
+frm_calculation.rowconfigure([0,1,2,3,4,5,6,7,8], minsize=100, weight=1)
+frm_calculation.rowconfigure(0, weight=1, minsize=175)
+frm_calculation.rowconfigure(8, minsize=150, weight=1)
 frm_calculation.columnconfigure([0,1,2,3,4], minsize=100, weight=1)
 frm_calculation.grid(row=1, column=1, sticky="nesw")
 frm_calculation.lower() # Hides frame initially
@@ -190,7 +190,7 @@ lbl_specified_exercise =tk.Label(frm_calculation, font=("Arial",30))
 lbl_specified_exercise.grid(row=2, rowspan=2, column=0, columnspan=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 ent_answer_space = tk.Entry(frm_calculation, font=("Arial", 25), width=10)
-ent_answer_space.grid(row=2, rowspan=2 ,column=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+ent_answer_space.grid(row=2, rowspan=2 ,column=3, padx= global_padding[0], pady=global_padding[1])
 
 # Creating check_answer button
 btn_check_answer = tk.Button(frm_calculation, text="Controleer het antwoord", command=handlers.check_button_handler)
