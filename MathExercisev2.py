@@ -16,15 +16,18 @@ global_padding = (10, 10)
 
 # Using a class to organize methods that provide the math problems
 class operations():
+    "Decorative class used to group respective methods visually"
 
     @staticmethod
     def addition():
+        "Adds two random integers and returns the sum"
         a,b = randint(0,9), randint(0,9)
         lbl_specified_exercise.configure(text=f"{a} + {b} = ")
         return a+b
 
     @staticmethod
     def subtraction():
+        "Subtracts two random integers and returns the difference"
         a,b = randint(0,9), randint(0,9)
         while a<b:
             a,b = randint(0,9), randint(0,9)
@@ -33,18 +36,21 @@ class operations():
     
     @staticmethod
     def multiplication():
+        "Multiplies two random integers and returns the product"
         a,b = randint(0,9), randint(0,9)
         lbl_specified_exercise.configure(text=f"{a} x {b} = ")
         return a*b
 
     @staticmethod
     def division():
+        "Divides two random integers and returns the quotient"
         a,b = randint(0,10), randint(1,10)
         lbl_specified_exercise.configure(text=f"{a*b} : {b} = ")
         return (a*b)/b
 
     @staticmethod
     def mixed_problems():
+        "Calls a random operation method and returns its output"
         input_option_dict = {1 : operations.addition, 2: operations.subtraction, 3: operations.multiplication, 4: operations.division, 5: operations.mixed_problems}
         return input_option_dict[randint(1,5)]()
 
@@ -54,7 +60,7 @@ def title_set(name):
 
 # Defines needed variables and calls the corresponding functions
 def game_loop(operation, operation_str=None):
-    """Defines needed variables and calls the corresponding functions."""
+    "Defines needed variables and calls the corresponding functions."
     global correct_answer
     global current_operation
     frm_calculation.lift() # Makes the exercise visible
@@ -69,6 +75,7 @@ class handlers:
     # Called when the "check_answer" button is pressed
     @staticmethod
     def check_button_handler(event=None):
+        "Checks if the answer is correct, updates counters accordingly and reruns the gameloop function"
         try:
             user_input = int(ent_answer_space.get()) # Checks if the inputted answer is an integer
             lbl_wrong_answer.configure(text="")
@@ -88,7 +95,7 @@ class handlers:
     # Called when the "end_calculations" button is pressed
     @staticmethod
     def return_to_main_menu():
-        """Returns to main menu and resets the calculation screen"""
+        "Returns to main menu and resets the calculation screen"
         frm_calculation.lower() # Hides calculation screen
         # Resets calculation screen
         lbl_wrong_answer.configure(text="")
@@ -104,12 +111,15 @@ class counters:
     amount_wrong, amount_correct = 0, 0
 
     def reset():
+        "Resets counters on calculation screen"
         counters.amount_wrong, counters.amount_correct = 0, 0
     
     def increase_correct_count():
+        "Increases correct counter by one on calculation screen"
         counters.amount_correct +=1
     
     def increase_wrong_count():
+        "Decreases correct counter by one on calculation screen"
         counters.amount_wrong +=1
 
 # Defining the root window
