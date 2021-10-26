@@ -29,6 +29,7 @@ The format is based on [Keep a Changelog],
 - Positioning of code blocks
 - global amount_wrong, amount_correct variables to class variables
 - Lay-out calculation screen
+- Changed the GUI to match the drawing from discord
 
 ### Deprecated
 - check_for_stop method
