@@ -11,6 +11,7 @@
 from random import randint
 import tkinter as tk
 import tkinter.font as tkFont
+from typing import Callable
 
 global_padding = (10, 10)
 
@@ -19,14 +20,14 @@ class operations():
     "Decorative class used to group respective methods visually"
 
     @staticmethod
-    def addition():
+    def addition() -> int:
         "Adds two random integers and returns the sum"
         a,b = randint(0,9), randint(0,9)
         lbl_specified_exercise.configure(text=f"{a} + {b} = ")
         return a+b
 
     @staticmethod
-    def subtraction():
+    def subtraction() -> int:
         "Subtracts two random integers and returns the difference"
         a,b = randint(0,9), randint(0,9)
         while a<b:
@@ -35,14 +36,14 @@ class operations():
         return a-b
     
     @staticmethod
-    def multiplication():
+    def multiplication() -> int:
         "Multiplies two random integers and returns the product"
         a,b = randint(0,9), randint(0,9)
         lbl_specified_exercise.configure(text=f"{a} x {b} = ")
         return a*b
 
     @staticmethod
-    def division():
+    def division() -> int:
         "Divides two random integers and returns the quotient"
         a,b = randint(0,10), randint(1,10)
         lbl_specified_exercise.configure(text=f"{a*b} : {b} = ")
@@ -55,11 +56,11 @@ class operations():
         return input_option_dict[randint(1,5)]()
 
 # Sets the title on the calculation screen
-def title_set(name):
+def title_set(name: str):
     lbl_title_calculation.configure(text=name)
 
 # Defines needed variables and calls the corresponding functions
-def game_loop(operation, operation_str=None):
+def game_loop(operation, operation_str:str=None):
     "Defines needed variables and calls the corresponding functions."
     global correct_answer
     global current_operation
