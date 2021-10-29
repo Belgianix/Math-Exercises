@@ -192,27 +192,28 @@ lbl_title_calculation.grid(row=0, column=0, columnspan=5, sticky="nesw", pady=(0
 btn_end_calculations = tk.Button(frm_calculation, text="Menu", command=handlers.return_to_main_menu, width=10, height=3)
 btn_end_calculations.grid(row=1, column=3, sticky="ne", padx= global_padding[1], pady=global_padding[1])
 
+# Creating specified_exercise label, ent_answer_space entry box and check_answer btn
+lbl_specified_exercise =tk.Label(frm_calculation, font=("Arial",30))
+lbl_specified_exercise.grid(row=2, column=0, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+
+ent_answer_space = tk.Entry(frm_calculation, borderwidth= 3, relief="groove",font=("Arial", 25), width=5)
+ent_answer_space.grid(row=2, column=2, sticky="ns", padx= global_padding[0], pady=global_padding[1])
+
+#add photoimage
+photo = tk.PhotoImage(file="btn.png")
+btn_check_answer = tk.Button(frm_calculation, borderwidth= 0, image = photo, border=None, command=handlers.check_button_handler)
+btn_check_answer.grid(row=2, column=3, padx= global_padding[0], pady=global_padding[1])
+
+# Creating wrong_answer label
+lbl_wrong_answer = tk.Label(frm_calculation, fg="red", font=("Arial", 15))
+lbl_wrong_answer.grid(row=3, column=0, columnspan=4, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
+
 # Creating count_right and count_wrong labels
 lbl_count_right = tk.Label(frm_calculation, text="Juist: 0", fg="dark green", bg="DarkOliveGreen1", borderwidth=1, relief="sunken")
 lbl_count_right.grid(row=4, column=0,columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 lbl_count_wrong = tk.Label(frm_calculation, text="Fout: 0", fg="dark red", bg="Indianred1", borderwidth=1, relief="sunken")
 lbl_count_wrong.grid(row=4, column=2,columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
-
-# Creating specified_exercise label and ent_answer_space entry box
-lbl_specified_exercise =tk.Label(frm_calculation, font=("Arial",30))
-lbl_specified_exercise.grid(row=2, column=0, columnspan=2, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
-
-ent_answer_space = tk.Entry(frm_calculation, font=("Arial", 25), width=5)
-ent_answer_space.grid(row=2, column=2, padx= global_padding[0], pady=global_padding[1])
-
-# Creating check_answer button
-btn_check_answer = tk.Button(frm_calculation, text="Controleer het antwoord", command=handlers.check_button_handler)
-btn_check_answer.grid(row=2, column=3, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
-
-# Creating wrong_answer label
-lbl_wrong_answer = tk.Label(frm_calculation, fg="red", font=("Arial", 15))
-lbl_wrong_answer.grid(row=3, column=0, columnspan=4, sticky="nesw", padx= global_padding[0], pady=global_padding[1])
 
 # Creating footer
 lbl_copyright = tk.Label(frm_calculation, text="\u00A9 2021 Seighin Van Hoeserlande & Bo Van Achte", bg="#202020", fg="white")

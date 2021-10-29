@@ -24,6 +24,8 @@ The format is based on [Keep a Changelog],
 - limited docstrings
 - counters class
 - ability to press the enter key to input answer
+- Round btn
+- Btn.png
 
 ### Changed
 - Positioning of code blocks
