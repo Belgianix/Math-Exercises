@@ -11,7 +11,6 @@
 from random import randint
 import tkinter as tk
 import tkinter.font as tkFont
-from typing import Callable
 
 global_padding = (10, 10)
 

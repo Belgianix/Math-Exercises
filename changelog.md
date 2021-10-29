@@ -5,11 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 
 ## [Unreleased]
-- Functioning GUI
+- Level of difficulty dependent on grade level
 - Login option through MariaDB 
 - Sound effects
 
-## [2.0.0] - 2021-10-02
+## [2.0.0] - 2021-10-29
 
 ### Added
 - Comments to the Gui and other small memo's in code 
