@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog],
 ## [2.0.1]  - 2021-11-10
 ### Added 
 - Sound effects
+- Method to choose random sound
 
 ## [2.0.0] - 2021-10-29
 
