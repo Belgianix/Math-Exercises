@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog],
 ## [Unreleased]
 - Level of difficulty dependent on grade level
 - Login option through MariaDB 
+
+## [2.0.1]  - 2021-11-10
+### Added 
 - Sound effects
 
 ## [2.0.0] - 2021-10-29
