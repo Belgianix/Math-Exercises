@@ -11,6 +11,7 @@
 from random import randint
 import tkinter as tk
 import tkinter.font as tkFont
+import winsound as ws
 
 global_padding = (10, 10)
 
@@ -53,7 +54,7 @@ class operations():
         "Calls a random operation method and returns its output"
         input_option_dict = {1 : operations.addition, 2: operations.subtraction, 3: operations.multiplication, 4: operations.division, 5: operations.mixed_problems}
         return input_option_dict[randint(1,5)]()
-
+        
 # Sets the title on the calculation screen
 def title_set(name: str):
     lbl_title_calculation.configure(text=name)
@@ -104,6 +105,10 @@ class handlers:
         lbl_count_wrong.configure(text=f"Fout: {counters.amount_wrong}")
         root.focus() # Prevents the entry box from receiving input while in the menu screen
 
+#Sound Dict
+def SoundEffect(RandInt):
+    sound = {1:'Sound1.wav', 2:'Sound2.wav', 3:'Sound3.wav'}
+    ws.PlaySound(sound[RandInt], ws.SND_FILENAME)
 
 # A simple class to eliminate the need of global variables and group similar methods related to the counters
 class counters:
@@ -117,6 +122,7 @@ class counters:
     def increase_correct_count():
         "Increases correct counter by one on calculation screen"
         counters.amount_correct +=1
+        SoundEffect(randint(1,3))
     
     def increase_wrong_count():
         "Decreases correct counter by one on calculation screen"
