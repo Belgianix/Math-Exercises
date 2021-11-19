@@ -106,9 +106,9 @@ class handlers:
         root.focus() # Prevents the entry box from receiving input while in the menu screen
 
 #Sound Dict
-def SoundEffect(nr):
+def SoundEffect(RandInt):
     sound = {1:'Sound1.wav', 2:'Sound2.wav', 3:'Sound3.wav'}
-    ws.PlaySound(sound[nr], ws.SND_FILENAME)
+    ws.PlaySound(sound[RandInt], ws.SND_FILENAME)
 
 # A simple class to eliminate the need of global variables and group similar methods related to the counters
 class counters:
