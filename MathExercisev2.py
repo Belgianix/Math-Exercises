@@ -105,10 +105,14 @@ class handlers:
         lbl_count_wrong.configure(text=f"Fout: {counters.amount_wrong}")
         root.focus() # Prevents the entry box from receiving input while in the menu screen
 
-#Sound Dict
+"""
+Plays sound effect when called. Numbers under 3 will play a random "correct" effect sound while
+anything above 3 will result in a random "wrong" sound effect
+"""
+
 def SoundEffect(RandInt):
-    sound = {1:'Sound1.wav', 2:'Sound2.wav', 3:'Sound3.wav'}
-    ws.PlaySound(sound[RandInt], ws.SND_FILENAME)
+    sounds = {1:'Sound1Correct.wav', 2:'Sound2Correct.wav', 3:'Sound3Correct.wav', 4:"Sound4Wrong.wav"}
+    ws.PlaySound("Sound Effects\\" + sounds[RandInt], ws.SND_FILENAME)
 
 # A simple class to eliminate the need of global variables and group similar methods related to the counters
 class counters:
@@ -127,6 +131,7 @@ class counters:
     def increase_wrong_count():
         "Decreases correct counter by one on calculation screen"
         counters.amount_wrong +=1
+        SoundEffect(4)
 
 # Defining the root window
 root = tk.Tk()
