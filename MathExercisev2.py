@@ -62,12 +62,12 @@ class TimerError(Exception):
     """A custom exception used to report errors in use of Timer class"""
 
 class Timer:
-    def __init__(self):
-        self._start_time = None
+    def __init__(self, countdown_time):
+        self.countdown_time = countdown_time
 
     def start(self):
         """Start a new timer"""
-        if self._start_time is not None:
+        if self.countdown_time is not None:
             raise TimerError("Timer is running. Use .stop() to stop it")
 
         self._start_time = perf_counter()
@@ -81,7 +81,7 @@ class Timer:
         self._start_time = None
         print(f"Elapsed time: {elapsed_time:0.2f} seconds")
 
-t = Timer()
+t = Timer(5)
 
 
 
@@ -136,17 +136,19 @@ class handlers:
         lbl_count_wrong.configure(text=f"Fout: {counters.amount_wrong}")
         root.focus() # Prevents the entry box from receiving input while in the menu screen
 
-"""
-Plays sound effect when called. Numbers under 3 will play a random "correct" effect sound while
-anything above 3 will result in a random "wrong" sound effect
-"""
-
 def SoundEffect(RandInt):
+    """
+    Plays sound effect when called. Numbers under 3 will play a random "correct" effect sound while
+    anything above 3 will result in a random "wrong" sound effect
+    """
     sounds = {1:'Sound1Correct.wav', 2:'Sound2Correct.wav', 3:'Sound3Correct.wav', 4:"Sound4Wrong.wav"}
     ws.PlaySound("Sound Effects\\" + sounds[RandInt], ws.SND_FILENAME)
 
-# A simple class to eliminate the need of global variables and group similar methods related to the counters
 class counters:
+    """
+    A simple class to eliminate the need of global variables and group similar methods related to
+    the counters
+    """
 
     amount_wrong, amount_correct = 0, 0
 
