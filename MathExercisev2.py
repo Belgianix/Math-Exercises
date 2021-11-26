@@ -3,10 +3,14 @@
 # Author: Seighin Van Hoeserlande & Bo Van Achte
 # Description: Simple program created to test basic mathmatical skills of the user. Created as a project for school on 09-30-2021
 
-#TODO: Add GUI (v2.0.0)
 #TODO: Optimize?
-
-#TODO: Stylize calculation frame
+#TODO: Fix the Timer
+#TODO: btn that explains what u need to do (calculation frame)
+#TODO: btn so u can switch the sound on and off
+#TODO: Creating a grade level system
+#TODO: Creating an option where u can choose wich excercises u do (ex. only subtractions with 7)
+#TODO: Setting the focus immediatly on the entry box (calculation frame)
+#TODO: reordering classes???
 
 from random import randint
 import tkinter as tk
