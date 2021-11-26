@@ -12,7 +12,6 @@ from random import randint
 import tkinter as tk
 import tkinter.font as tkFont
 import winsound as ws
-from time import perf_counter
 
 global_padding = (10, 10)
 
@@ -55,36 +54,7 @@ class operations():
         "Calls a random operation method and returns its output"
         input_option_dict = {1 : operations.addition, 2: operations.subtraction, 3: operations.multiplication, 4: operations.division, 5: operations.mixed_problems}
         return input_option_dict[randint(1,5)]()
-    
-#! WIP!!!
-
-class TimerError(Exception):
-    """A custom exception used to report errors in use of Timer class"""
-
-class Timer:
-    def __init__(self):
-        self._start_time = None
-
-    def start(self):
-        """Start a new timer"""
-        if self._start_time is not None:
-            raise TimerError("Timer is running. Use .stop() to stop it")
-
-        self._start_time = perf_counter()
-
-    def stop(self):
-        """Stop the timer, and report the elapsed time"""
-        if self._start_time is None:
-            raise TimerError("Timer is not running. Use .start() to start it")
-
-        elapsed_time = perf_counter() - self._start_time
-        self._start_time = None
-        print(f"Elapsed time: {elapsed_time:0.2f} seconds")
-
-t = Timer()
-
-
-
+        
 # Sets the title on the calculation screen
 def title_set(name: str):
     lbl_title_calculation.configure(text=name)
@@ -127,7 +97,6 @@ class handlers:
     @staticmethod
     def return_to_main_menu():
         "Returns to main menu and resets the calculation screen"
-        t.stop()
         frm_calculation.lower() # Hides calculation screen
         # Resets calculation screen
         lbl_wrong_answer.configure(text="")
