@@ -12,6 +12,9 @@ The format is based on [Keep a Changelog],
 ### Changed
 - The TODO list
 
+### Added
+- Gui
+- Code from v2
 
 ## [2.0.1]  - 2021-11-10
 ### Added 
